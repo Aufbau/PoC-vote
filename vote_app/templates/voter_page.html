@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vote here!</title>
+</head>
+<body>
+	<h1>Please cast your vote!</h1>
+	<form action='{% url 'voted' %}' method='post'>
+	  <input type="radio" name="fruit" value="Apple" required>
+	  <label>Apple</label><br>
+	  <input type="radio" name="fruit" value="Mango">
+	  <label>Mango</label><br>
+	  <input type="submit">
+	</form>
+</body>
+</html>
