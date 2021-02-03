@@ -8,17 +8,21 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 r = Redis(host="super-redis", port=6379)
-logging.info("Connected to super-redis ...")
+logging.info("Vote app onnected to super-redis ...")
 
 class VoteApp(APIView):
 
     def get(self, request):
-        if request.session.session_key is None:
-            request.session.create()
-        logging.info('session_key: {}'.format(request.session.session_key))
+        if request.session.session_key is not None:
+            msg = 'It appears you have already voted! Changed your mind?'
+            logging.info('session_key: {}'.format(request.session.session_key))
+            return render(request, 'voter_page.html', {'data': msg})
         return render(request, 'voter_page.html')
 
     def post(self, request):
+        if request.session.session_key is None:
+            request.session.create()
+            logging.info('session_key: {}'.format(request.session.session_key))
         voted_fruit = request.data['fruit']
         data = json.dumps({'client_id': request.session.session_key, 'vote_option': voted_fruit})
         r.rpush('votes', data)
