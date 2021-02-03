@@ -10,6 +10,6 @@ class VoteForm(forms.Form):
 
     def validate_input(self, fruit):
         for fruits in CHOICES:
-            if fruit in fruits[0]:
+            if fruit == fruits[0]:
                 return True
         return False
