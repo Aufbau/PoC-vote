@@ -4,6 +4,7 @@
 	<title>Vote here!</title>
 </head>
 <body>
+	<h1>{{ data }}</h1>
 	<h1>Please cast your vote!</h1>
 	<form action='{% url 'voted' %}' method='post'>
 	  <input type="radio" name="fruit" value="Apple" required>
