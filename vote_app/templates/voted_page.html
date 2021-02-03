@@ -4,6 +4,10 @@
 	<title>Thank you!</title>
 </head>
 <body>
-	<h1>You voted for {{ data }}!</h1>
+	{% if data %}
+		<h2>You voted for {{ data }}!</h2>
+	{% else %}
+		<h2>Your vote was invalid!</h2>
+	{% endif %}
 </body>
 </html>
